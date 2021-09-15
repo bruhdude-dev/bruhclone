@@ -44,7 +44,7 @@ if ($_SESSION['level'] > 1)
                                     <h1>Account</h1>
                                     <input type="submit" class="post-button black-button sidebar-social-container" value="Delete" data-modal-open="#manage-delete-page">
                                     <h1>Other</h1>
-                                    <span class="post-tag post-topic-category symbol">The Create Community button has been removed as of July 27th, 2021.</span>
+                                    <input type="button" onclick="window.location.href='/communities/create';" class="black-button sidebar-social-container" value="Create Community"> <!--does this code work-->
 									<?php if ($_SESSION['level'] > 1) {
 										print '<input type="button" onclick="window.location.href=\'/admin/server_status/'.$username.'\';" style="width: 150px;" class="black-button sidebar-social-container" value="Server Information">';
 									}
