@@ -3,11 +3,11 @@ $title = 'Feed';
 $selected = 'feed';
 require_once('inc/header.php');
 $is_general = true;
-require_once('inc/connect.php');
-require_once('elements/user-sidebar.php');
+require_once('inc/connect.php'); // this doesn't work
+require_once('elements/user-sidebar.php'); // this doesn't work
 ?>
 <div class="feed-main community-top post-list-outline">
-<div style="padding:15px 35px 15px 15px;margin-bottom:20px;border: 1px solid #bcdbf1;border-radius:4px;color: #31758f;background-color: #d1e6f5;"><?php print(FEED_NOTICE); ?></div>
+<!--notice thingy:--><div style="padding:15px 35px 15px 15px;margin-bottom:20px;border: 1px solid #bcdbf1;border-radius:4px;color: #31758f;background-color: #d1e6f5;"><?php print(FEED_NOTICE); ?></div>
     <form id="post-form" method="post" action="/posts" class="for-identified-user folded" data-post-subtype="default">
         <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
         <div class="feeling-selector js-feeling-selector"><label class="symbol feeling-button feeling-button-normal checked"><input type="radio" name="feeling_id" value="0" checked><span class="symbol-label">normal</span></label><label class="symbol feeling-button feeling-button-happy"><input type="radio" name="feeling_id" value="1"><span class="symbol-label">happy</span></label><label class="symbol feeling-button feeling-button-like"><input type="radio" name="feeling_id" value="2"><span class="symbol-label">like</span></label><label class="symbol feeling-button feeling-button-surprised"><input type="radio" name="feeling_id" value="3"><span class="symbol-label">surprised</span></label><label class="symbol feeling-button feeling-button-frustrated"><input type="radio" name="feeling_id" value="4"><span class="symbol-label">frustrated</span></label><label class="symbol feeling-button feeling-button-puzzled"><input type="radio" name="feeling_id" value="5"><span class="symbol-label">puzzled</span></label></div>
@@ -23,7 +23,7 @@ require_once('elements/user-sidebar.php');
                     <div class="window">
                         <h1 class="window-title">About Tags</h1>
                         <div class="window-body">
-                            <p class="window-body-content">A post can optionally have up to 20 tags, each of up to 20 characters of length. These tags will be displayed on your post's page, and are useful in helping people interested in these topics find your post. To add tags to your post, simply enter a comma-seperated list of tags (spaces after commas are optional) such as "art,yosafire,the gray garden". Please note that using tags deceptively may get your post removed.</p>
+                            <p class="window-body-content">A post can optionally have up to 20 tags, each of up to 20 characters of length. These tags will be displayed on your post's page, and are useful in helping people interested in these topics find your post. To add tags to your post, simply enter a comma-seperated list of tags (spaces after commas are optional) such as "art,gaming,spongebob". Please note that using tags deceptively may get your post removed.</p>
                             <div class="form-buttons">
                                 <input type="button" class="olv-modal-close-button black-button" value="Close">
                             </div>
