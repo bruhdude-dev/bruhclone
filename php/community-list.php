@@ -22,18 +22,6 @@ if(empty($_SESSION['username'])) { ?>
     </div>
 <?php } ?>
 <div class="body-content" id="community-top" data-region="USA">
-<div style="padding:15px 35px 15px 15px;margin-bottom:20px;border:1px solid #bcf1C2;border-radius:4px;color:#348f31;background-color:#ddf5d1">bruhclone uses cookies to make your site experience better! For more information on cookies, <a href="https://en.wikipedia.org/wiki/HTTP_cookie">please click here!</a></div>
-<?php
-if (!empty($_SERVER['HTTPS'])) 
-{
-  echo '';
-}
-else
-{
-echo '<div style="padding:15px 35px 15px 15px;margin-bottom:20px;border: 1px solid #bcdbf1;border-radius:4px;color: #31758f;background-color: #d1e6f5;"><a href="https://unimii.webs.nf/">use https dumbass</a></div>
-'."\n";
-}
-?>
     <div class="community-main">
         <?php
         $stmt = $db->prepare('SELECT posts.id, posts.community, name, icon, owner_nickname, feeling, body, image, nickname, avatar, has_mh FROM posts LEFT JOIN users ON created_by = users.id INNER JOIN (SELECT community, name, icon, nickname AS owner_nickname FROM communities LEFT JOIN users ON users.id = owner LEFT JOIN posts ON communities.id = community AND posts.created_at > NOW() - INTERVAL 24 HOUR AND posts.status = 0 WHERE privacy = 0 AND communities.status = 0 GROUP BY communities.id ORDER BY COUNT(posts.id) DESC LIMIT 4) AS post_communities ON post_communities.community = posts.community WHERE posts.created_at > NOW() - INTERVAL 1 HOUR AND image IS NOT NULL AND sensitive_content = 0 AND posts.status = 0 AND IF(level < ? OR IF(posts.community IS NULL, 0, (SELECT IFNULL(level, 0) FROM community_admins WHERE user = ? AND community = posts.community LIMIT 1) < (SELECT IFNULL(level, 0) FROM community_admins WHERE user = created_by AND community = posts.community LIMIT 1)), 1, created_by NOT IN (SELECT target FROM blocks WHERE source = ? UNION SELECT source FROM blocks WHERE target = ?)) ORDER BY (SELECT COUNT(*) FROM empathies WHERE target = posts.id AND type = 0) DESC, id DESC LIMIT 10');
@@ -115,21 +103,18 @@ echo '<div style="padding:15px 35px 15px 15px;margin-bottom:20px;border: 1px sol
             <input type="text" name="query" placeholder="Search" maxlength="255"><input type="submit" value="q" title="Search">
         </form>
 	<div class="post-list-outline" style="text-align: center">
-			<h2 class="label">bruhclone</h2>
+			<h2 class="label">why</h2>
 			<br>
-			<p style="width: 90%; display: inline-block; padding-bottom: 10px;">It exists.</p>
-			<h2 class="label">Why?</h2>
-			<br>
-		    <p style="width: 90%; display: inline-block; padding-bottom: 10px;">I don't know.</p>
+		    	<p style="width: 90%; display: inline-block; padding-bottom: 10px;">I don't know.</p>
 		    
 	</div>
 <div class="adx test-adx"> <span class="adx-label">Advertisement</span> <a href="<?php print(AD_LINK); ?>"><img src="<?php print(AD_IMG); ?>" style="/* height: 180px; */width: 300px;"></a> </div>
-        <div id="identified-user-banner">
+        <!--<div id="identified-user-banner">
             <a href="/communities/1" data-pjax="#body" class="list-button us">
                 <span class="title">Get the latest news here!</span>
                 <span class="text">Posts from Verified Users</span>
             </a>
-        </div>
+        </div>-->
         <?php
         $stmt = $db->prepare('SELECT posts.id, created_by, posts.created_at, community, name, icon, feeling, body, image, yt, sensitive_content, username, nickname, avatar, has_mh, level, (SELECT COUNT(*) FROM empathies WHERE target = posts.id AND type = 0) AS empathy_count, (SELECT COUNT(*) FROM replies WHERE post = posts.id AND status = 0) AS reply_count, (SELECT COUNT(*) FROM empathies WHERE target = posts.id AND type = 0 AND source = ?) AS empathy_added FROM posts LEFT JOIN users ON created_by = users.id LEFT JOIN communities ON communities.id = community WHERE posts.created_at > NOW() - INTERVAL 1 HOUR AND image IS NULL AND sensitive_content = 0 AND posts.status = 0 AND IF(level < ? OR IF(community IS NULL, 0, (SELECT IFNULL(level, 0) FROM community_admins WHERE user = ? AND community = community LIMIT 1) < (SELECT IFNULL(level, 0) FROM community_admins WHERE user = created_by AND community = community LIMIT 1)), 1, created_by NOT IN (SELECT target FROM blocks WHERE source = ? UNION SELECT source FROM blocks WHERE target = ?)) ORDER BY (SELECT COUNT(*) FROM empathies WHERE target = posts.id AND type = 0) DESC, id DESC LIMIT 10');
         $stmt->bind_param('iiiii', $_SESSION['id'], $_SESSION['level'], $_SESSION['id'], $_SESSION['id'], $_SESSION['id']);
@@ -191,7 +176,7 @@ echo '<div style="padding:15px 35px 15px 15px;margin-bottom:20px;border: 1px sol
         ?>
         <div id="community-guide-footer">
             <div id="guide-menu">
-                <!--<a href="https://github.com/TouhouBoi/GalaxyPlaza" class="arrow-button"><span>GitHub</span></a>-->
+                <a href="https://github.com/devdude-bruh/bruhclone" class="arrow-button"><span>GitHub</span></a>
                 <a href="/info/rules" class="arrow-button"><span>Site Rules</span></a>
                 <a href="/info/contact" class="arrow-button"><span>Contact Us</span></a>
             </div>
