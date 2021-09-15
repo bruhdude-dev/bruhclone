@@ -4,7 +4,7 @@ global $config_double;
 
 // Server Version and Postfix
 const GP_VERSION = "2.0.0";
-const GP_VERSION_POST_FIX = "production";
+const GP_VERSION_POST_FIX = "git";
 
 // External Urls
 const MII_CDN_URL = "https://mii-secure.cdn.nintendo.net/";
@@ -43,10 +43,10 @@ if ($mobiledetectlib->isMobile()) {
 	//exit();
 }
 
-// Connect to DB
+// connect to database
 $db = @mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-// Exit if no db connectiondfddddfddnf
+// wonky smonky
 if (!$db)
 {
     http_response_code(500);
@@ -303,31 +303,6 @@ function getTheme($theme)
 	{
 		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
 	}
-    if ($theme == 2)
-	{
-		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
-        print '<link rel="stylesheet" type="text/css" href="/assets/css/neon.css">';
-	}
-    if ($theme == 4)
-	{
-		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
-        print '<link rel="stylesheet" type="text/css" href="/assets/css/blueness.css">';
-	}
-    if ($theme == 5)
-	{
-		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
-        print '<link rel="stylesheet" type="text/css" href="/assets/css/hardcoded-dark.css">';
-	}
-    if ($theme == 6)
-	{
-		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
-        print '<link rel="stylesheet" type="text/css" href="/assets/css/checker.css">';
-	}
-    if ($theme == 3)
-	{
-		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
-        print '<link rel="stylesheet" type="text/css" href="/assets/css/obama.css">';
-	}
 	else if ($theme == 1)
 	{
 		print '<link rel="stylesheet" type="text/css" href="/assets/css/offdevice.css">';
@@ -350,7 +325,7 @@ function getPreview($body)
 // Gets Post Timestamp
 function getTimestamp($datetime)
 {
-    $timeSincePost = time() - strtotime($datetime);
+    $timeSincePost = time() - strtotime($datetime); // TO-DO: change to less than a mewo ago, 1 mewo ago, 1 mewos ago etc etc
 	
     if($timeSincePost < 1)
 	{
@@ -394,7 +369,7 @@ function getTimestamp($datetime)
     }
 }
 
-// Init User
+// grab user hahahahahhhahahah
 function initUser($username, $is_general = false)
 {
     global $db;
@@ -629,7 +604,7 @@ function uploadImage($file, $width = null, $height = null, $community_icon = fal
 {
     if($width !== null && $height !== null && extension_loaded('imagick'))
 	{
-        $imagick = new Imagick();
+        $imagick = new Imagick(); //imagickdick
         $imagick->readImageBlob($file);
 		
         if ($imagick->getImageFormat() === 'GIF')
