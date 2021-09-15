@@ -35,7 +35,6 @@
                     </li>
                     <li id="global-menu-list">
 					</li>
-					</menu>
             </div>
             <div id="main-body">	<div class="main-column">
 		<div class="post-list-outline">
