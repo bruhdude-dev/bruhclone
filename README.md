@@ -1,10 +1,10 @@
-## bruhclone
+# bruhclone
 It exists.
-# Why?
+## Why?
 I don't know.
-# Do it fart?
+## Do it fart?
 Yes.
-# Can I use this code?
+## Can I use this code?
 Half-yes half-no.
-# Does it alive?
+## Does it alive?
 Yes
