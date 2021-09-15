@@ -56,26 +56,6 @@ require_once('connect.php');
 			{
 				getTheme(0);
 			}
-            if ($theme_row['site_theme'] == 2)
-			{
-				getTheme(2);
-			}
-            if ($theme_row['site_theme'] == 3)
-			{
-				getTheme(3);
-			}
-            if ($theme_row['site_theme'] == 4)
-			{
-				getTheme(4);
-			}
-            if ($theme_row['site_theme'] == 5)
-			{
-				getTheme(5);
-			}
-            if ($theme_row['site_theme'] == 6)
-			{
-				getTheme(6);
-			}
 			else if ($theme_row['site_theme'] == 1)
 			{
 				getTheme(1);
