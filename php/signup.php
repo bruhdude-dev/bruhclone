@@ -1,7 +1,7 @@
 <?php
 require_once('inc/connect.php');
 
-if (ALLOW_SIGNUP == false)
+if (ALLOW_SIGNUP == false) // TO-DO: add disabled reason
 {
 	$title = 'Sign Up';
 	require_once('inc/header.php');
@@ -16,6 +16,13 @@ if (ALLOW_SIGNUP == false)
 	exit();
 }
 
+
+if(!empty($_SESSION['username']))
+{
+    http_response_code(403);
+    header('Location: /');
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -157,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	
     if ($proxy_check === '1')
 	{
-        $error = 'You cannot sign in using a proxy.';
+        $error = 'Please stop.';
         goto showForm;
     }
 
