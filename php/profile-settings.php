@@ -5,7 +5,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(!isset($_POST['token']) || $_SESSION['token'] !== $_POST['token']) {
         showJSONError(400, 1234321, 'The CSRF check failed.');
     }
-    $stmt = $db->prepare('SELECT nickname, email, has_mh, nnid, mh, profile_comment, site_theme, birthday, country, website, genre, pronounz FROM users WHERE id = ?');
+    $stmt = $db->prepare('SELECT nickname, email, has_mh, nnid, mh, profile_comment, site_theme, birthday, country, website, genre, pronounz, play_audio FROM users WHERE id = ?');
     $stmt->bind_param('i', $_SESSION['id']);
     $stmt->execute();
     if($stmt->error) {
@@ -48,6 +48,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                         showJSONError(400, 1211337, 'Your pronouns are too long.');
                     }
                     break;
+		case 'play_audio':
+                    if(!in_array($value, ['0', '1'])) {
+                        showJSONError(400, 1038843, 'Your sound setting is invalid.');
+                    }
 		case 'profile_comment':
                     if(mb_strlen($value) > 2000) {
                         showJSONError(400, 1337121, 'Your profile comment is too long.');
@@ -171,6 +175,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <p class="settings-label">Pronouns</p>
                         <input type="text" class="url-form" name="pronouns" maxlength="40" value="<?=htmlspecialchars($row['pronounz'])?>" placeholder="Pronouns">
                     </li>
+			<li>
+                        <p class="settings-label">Sound Setting</p>
+                        <label><input type="radio" name="play_audio" value="1"<?=$row['play_audio'] === 1 ? ' checked' : ''?>> Play sound</label>
+                        <label><input type="radio" name="play_audio" value="0"<?=$row['play_audio'] === 0 ? ' checked' : ''?>> Do not play</label>
+                        <p class="note">Do not set the setting to "Play sound" if you are on Firefox. The site will look weird if you are on Firefox and have the sound on.</p>
+                    </li>
                     <li class="setting-profile-comment">
                         <p class="settings-label">Profile Comment</p>
                         <textarea id="profile-text" class="textarea" name="profile_comment" maxlength="2000" placeholder="Write about yourself here."><?=htmlspecialchars($row['profile_comment'])?></textarea>
@@ -204,15 +214,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <b>Default</b><br>
                         <label><input type="radio" name="site_theme" value="0"<?=$row['site_theme'] === 0 ? ' checked' : ''?>> Default</label>
                         <label><input type="radio" name="site_theme" value="1"<?=$row['site_theme'] === 1 ? ' checked' : ''?>> Dark</label>
-                        <br>
-                        <b>Other Themes</b><br>
-                        <label><input type="radio" name="site_theme" value="2"<?=$row['site_theme'] === 2 ? ' checked' : ''?>> Neon</label>
-                        <label><input type="radio" name="site_theme" value="3"<?=$row['site_theme'] === 3 ? ' checked' : ''?>> Obama Mode</label>
-                        <label><input type="radio" name="site_theme" value="5"<?=$row['site_theme'] === 5 ? ' checked' : ''?>> Cozy Dark</label>
-                        <label><input type="radio" name="site_theme" value="6"<?=$row['site_theme'] === 6 ? ' checked' : ''?>> Checker BG</label>
-                        <br>
-                        <b>Clone Themes</b><br>
-                        <label><input type="radio" name="site_theme" value="4"<?=$row['site_theme'] === 4 ? ' checked' : ''?>> Closedverse Dark</label>
                     </li>
                 </ul>
                 <div class="form-buttons">
