@@ -176,7 +176,7 @@ if(empty($_SESSION['username'])) { ?>
         ?>
         <div id="community-guide-footer">
             <div id="guide-menu">
-                <a href="https://github.com/devdude-bruh/bruhclone" class="arrow-button"><span>GitHub</span></a>
+                <a href="https://github.com/pa-parappa/bruhclone" class="arrow-button"><span>GitHub</span></a>
                 <a href="/info/rules" class="arrow-button"><span>Site Rules</span></a>
                 <a href="/info/contact" class="arrow-button"><span>Contact Us</span></a>
             </div>
