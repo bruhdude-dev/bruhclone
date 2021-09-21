@@ -38,10 +38,10 @@
             </div>
             <div id="main-body">	<div class="main-column">
 		<div class="post-list-outline">
-            <h2 class="label">500 Internal Server Error</h2>
+            <h2 class="label">Whoops! You must insert the CD into your computer.</h2>
             <section id="post-content" class="post post-subtype-default">
                 <ul class="list list-content-with-icon-and-text arrow-list">
-                    <p>Whoops! You must insert the CD into your computer.</p>
+                    <p>A 500 internal server error happened!</p>
                     <p>This error may be caused due to the database not functioning right, or if something just down-right went wrong internally.</p>
                     <p>No worries, though. bruhclone will be back soon!</p>
                 </ul>
