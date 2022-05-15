@@ -1,3 +1,4 @@
+**This branch contains old code and i'm too lazy to replace it with new code**
 # bruhclone
 It exists.
 ## Why?
